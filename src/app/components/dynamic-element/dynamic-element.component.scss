@@ -1,0 +1,190 @@
+.w-checkbox {
+  width: 20px !important;
+  position: absolute; // take it out of document flow
+  opacity: 0; // hide it
+
+  &+label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    float: left;
+
+    &+span {
+      float: left;
+      margin-top: 0.25rem !important;
+    }
+  }
+
+  .input-group {
+    .w-checkbox+label {
+      margin-bottom: 0;
+      font-weight: normal;
+      color: #212529;
+    }
+
+    &.dynamic-form-checkbox {
+      .input-group-addon {
+        padding-left: 0;
+      }
+    }
+
+    .input-group-addon {
+      background: transparent;
+      border: none;
+      color: #a2aabd;
+      position: absolute;
+      height: 100%;
+      z-index: 1;
+      z-index: 5;
+
+      i {
+        font-size: 1.154rem;
+      }
+    }
+
+    textarea.form-control {
+      min-height: 54px !important;
+    }
+
+    .form-control {
+      border-radius: 0.2rem !important;
+      padding-left: 0;
+      text-indent: 40px;
+      height: 36px;
+
+      &:focus {
+        border-color: #4da1ff;
+      }
+    }
+
+    textarea.form-control {
+      // height: auto !important;
+    }
+
+    select {
+      @extend input;
+      height: 36px !important;
+    }
+
+    .checkbox-label {
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 0.25rem;
+      padding: 0.7rem 0rem 0;
+      font-size: 1rem;
+      width: 100%;
+      font-size: 0.85rem;
+      height: 36px;
+      padding-left: 45px;
+
+      &.error {
+        border-color: #ff2233;
+      }
+    }
+  }
+
+  // Box.
+  &+label:before {
+    content: '';
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border: 1px solid #e0e6ed;
+    border-radius: 3px;
+  }
+
+  // Box hover
+  &:hover+label:before {
+    background: #4da1ff;
+  }
+
+  // Box checked
+  &:checked+label:before {
+    background: #4da1ff;
+  }
+
+  // Disabled state label.
+  &:disabled+label {
+    color: #b8b8b8;
+    cursor: auto;
+  }
+
+  // Disabled box.
+  &:disabled+label:before {
+    box-shadow: none;
+    background: #ddd;
+  }
+
+  // Checkmark. Could be replaced with an image
+  &:checked+label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+}
+
+input,
+select {
+  &:not(.ng-untouched).ng-invalid {
+    border-color: #e0e6ed;
+  }
+}
+
+.form-group {
+  .error-msg {
+    color: #f52a44;
+    font-size: 0.85rem;
+    padding-top: 0.1rem;
+  }
+
+  label {
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    // text-transform: lowercase;
+    // &::first-letter {
+    //   text-transform: capitalize;
+    // }
+  }
+
+  input {
+    // padding: $input-padding;
+    // font-size: $input-font-size;
+    outline: none;
+    width: 100%;
+    height: 36px !important;
+  }
+
+  textarea {
+    @extend input;
+    padding-left: 10px !important;
+    text-indent: 0 !important;
+    resize: vertical;
+    min-height: 54px !important; // min-height: 36px !important;
+  }
+
+  select {
+    @extend input;
+  }
+
+  input,
+  select {
+
+    // height: 36px !important;
+    &.error {
+      border-color: #ff2233 !important;
+
+      &:focus {
+        border-color: #ff2233 !important;
+      }
+    }
+  }
+}

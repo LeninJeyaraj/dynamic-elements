@@ -1,0 +1,46 @@
+<!-- @TODO :  Error div -->
+<!-- <div class="text-danger" *ngIf="group.get(config.__pushKey).hasError('required') && group.get(config.__pushKey).touched">Invalid
+    {{config.name | lowercase}}</div> -->
+
+<!-- text fields such as text field, number field -->
+<div *ngIf="isTextField" class="form-group">
+  <div class="input-group">
+    <label for="">{{ config?.title }}</label>
+    <input class="form-control" (keypress)="validateNumeric($event, config)" [attr.id]="config?.formcontrolname"
+      [placeholder]="config?.placeholder">
+  </div>
+</div>
+<!-- end of text field -->
+
+<!-- text area elements such as text field, number field -->
+<div *ngIf="isTextArea" class="form-group">
+  <div class="input-group">
+    <label for="">{{ config?.title }}</label>
+    <textarea class="form-control" [attr.id]="config?.formcontrolname" [placeholder]="config?.placeholder"></textarea>
+  </div>
+</div>
+<!-- end of text area element -->
+
+<!-- Group elements like checkbox, radio buttons -->
+<div *ngIf="isGroupElement">
+  <label for="">{{ config?.title }}</label>
+  <div class="input-group dynamic-form-checkbox">
+    <span class="input-group-addon" *ngFor="let tag of config?.tags">
+      <input class="w-checkbox" [attr.id]="tag?.formcontrolname" [attr.name]="config?.type " [type]="config?.type">
+      <label [for]="tag?.formcontrolname">{{ tag?.tag }}</label>
+    </span>
+  </div>
+</div>
+<!-- end of Group elements -->
+
+<!-- Dynamic date field start -->
+<div class="form-group" *ngIf="isDate">
+  <div class="input-group">
+    <!-- <input type="hidden" [attr.id]="config.formcontrolname" [placeholder]="config?.placeholder" /> -->
+    <input type="text" [attr.id]="config.formcontrolname" [placeholder]="config?.placeholder" class="form-control"
+      [minDate]="config?.minDate" [maxDate]="config?.maxDate" #dp="bsDatepicker" bsDatepicker
+      [(bsValue)]="config.selectdate" placement="top" (bsValueChange)="dateChange($event)" [bsConfig]="bsConfig"
+      value="{{ config.selectdate | date:'yyyy-MM-dd' }}">
+  </div>
+</div>
+<!-- Dynamic date field end -->
